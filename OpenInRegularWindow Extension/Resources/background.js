@@ -9,7 +9,6 @@ async function openInRegularWindowFromTab(tab) {
 
     const url = tab.url;
 
-    // If we're already in a regular (non-incognito) window:
     if (!tab.incognito) {
       await browser.tabs.create({
         windowId: tab.windowId,
@@ -19,12 +18,10 @@ async function openInRegularWindowFromTab(tab) {
       return;
     }
 
-    // We are in a private tab here.
     const windows = await browser.windows.getAll({ populate: false });
     let regularWindow = windows.find(w => !w.incognito && w.type === "normal");
 
     if (!regularWindow) {
-      // No regular window exists: create one with this URL
       const newWindow = await browser.windows.create({
         url,
         incognito: false,
@@ -32,14 +29,11 @@ async function openInRegularWindowFromTab(tab) {
       });
       regularWindow = newWindow;
     } else {
-      // Open new tab in existing regular window
       await browser.tabs.create({
         windowId: regularWindow.id,
         url,
         active: true
       });
-
-      // Focus that window
       await browser.windows.update(regularWindow.id, { focused: true });
     }
 
@@ -51,23 +45,6 @@ async function openInRegularWindowFromTab(tab) {
   }
 }
 
-// Toolbar icon click
 browser.action.onClicked.addListener((tab) => {
   openInRegularWindowFromTab(tab);
-});
-
-// Keyboard command
-browser.commands.onCommand.addListener(async (command) => {
-  if (command !== "open-in-regular-window") {
-    return;
-  }
-
-  const [activeTab] = await browser.tabs.query({
-    active: true,
-    currentWindow: true
-  });
-
-  if (activeTab) {
-    openInRegularWindowFromTab(activeTab);
-  }
 });

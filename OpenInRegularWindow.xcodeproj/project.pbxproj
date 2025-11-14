@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		091A2BC62EC7D96000580CC7 /* .gitignore in Sources */ = {isa = PBXBuildFile; fileRef = 091A2BC52EC7D95D00580CC7 /* .gitignore */; };
 		09D62AF62EC7CEBA004FEE0D /* OpenInRegularWindow Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 09D62AF52EC7CEBA004FEE0D /* OpenInRegularWindow Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		091A2BC52EC7D95D00580CC7 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = .gitignore; sourceTree = "<group>"; };
 		09D62ADB2EC7CEB8004FEE0D /* OpenInRegularWindow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenInRegularWindow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09D62AF52EC7CEBA004FEE0D /* OpenInRegularWindow Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "OpenInRegularWindow Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -90,6 +92,7 @@
 		09D62AD22EC7CEB8004FEE0D = {
 			isa = PBXGroup;
 			children = (
+				091A2BC52EC7D95D00580CC7 /* .gitignore */,
 				09D62ADD2EC7CEB8004FEE0D /* OpenInRegularWindow */,
 				09D62AF92EC7CEBA004FEE0D /* OpenInRegularWindow Extension */,
 				09D62ADC2EC7CEB8004FEE0D /* Products */,
@@ -214,6 +217,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				091A2BC62EC7D96000580CC7 /* .gitignore in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
