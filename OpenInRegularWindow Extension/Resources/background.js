@@ -1,5 +1,4 @@
-// background.js
-const CLOSE_PRIVATE_TAB_AFTER_OPEN = false; // set to true if you want to auto-close the private tab
+const CLOSE_PRIVATE_TAB_AFTER_OPEN = false;
 
 async function openInRegularWindowFromTab(tab) {
   try {
