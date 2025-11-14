@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Open In Regular Window",
+  "version": "1.0.0",
+  "description": "From a private Safari tab, open the same URL in a regular (non-private) window.",
+  "permissions": [
+    "tabs",
+    "windows"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_title": "Open In Regular Window"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "commands": {
+    "open-in-regular-window": {
+      "suggested_key": {
+        "default": "Alt+Shift+O"
+      },
+      "description": "Open current tab's URL in a regular window"
+    }
+  }
+}
