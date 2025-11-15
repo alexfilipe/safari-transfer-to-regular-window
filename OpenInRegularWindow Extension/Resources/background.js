@@ -1,6 +1,6 @@
 const CLOSE_PRIVATE_TAB_AFTER_OPEN = false;
 
-async function openInRegularWindowFromTab(tab) {
+async function switchTabPrivacyMode(tab) {
   try {
     if (!tab || !tab.url) {
       return;
@@ -8,42 +8,36 @@ async function openInRegularWindowFromTab(tab) {
 
     const url = tab.url;
 
-    if (!tab.incognito) {
-      await browser.tabs.create({
-        windowId: tab.windowId,
-        url,
-        active: true
-      });
-      return;
-    }
+    const targetIncognito = !tab.incognito;
 
     const windows = await browser.windows.getAll({ populate: false });
-    let regularWindow = windows.find(w => !w.incognito && w.type === "normal");
+    let targetWindow = windows.find(
+      w => w.incognito === targetIncognito && w.type === "normal"
+    );
 
-    if (!regularWindow) {
-      const newWindow = await browser.windows.create({
+    if (!targetWindow) {
+      targetWindow = await browser.windows.create({
         url,
-        incognito: false,
+        incognito: targetIncognito,
         focused: true
       });
-      regularWindow = newWindow;
     } else {
       await browser.tabs.create({
-        windowId: regularWindow.id,
+        windowId: targetWindow.id,
         url,
         active: true
       });
-      await browser.windows.update(regularWindow.id, { focused: true });
+      await browser.windows.update(targetWindow.id, { focused: true });
     }
 
     if (CLOSE_PRIVATE_TAB_AFTER_OPEN && tab.id != null) {
       await browser.tabs.remove(tab.id);
     }
   } catch (err) {
-    console.error("Failed to open in regular window:", err);
+    console.error("Failed to toggle incognito mode:", err);
   }
 }
 
 browser.action.onClicked.addListener((tab) => {
-  openInRegularWindowFromTab(tab);
+  switchTabPrivacyMode(tab);
 });

@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Open In Regular Window",
-  "version": "0.1.2",
-  "description": "From a private Safari tab, open the same URL in a regular (non-private) window.",
+  "name": "Switch Tab Privacy Mode",
+  "version": "0.1.3",
+  "description": "Open the current tab in the opposite privacy mode (private or regular window)",
   "permissions": [
     "tabs",
     "windows"
@@ -11,7 +11,7 @@
     "<all_urls>"
   ],
   "action": {
-    "default_title": "Open current tab in regular window"
+    "default_title": "Open Current Tab in Opposite Privacy Mode"
   },
   "background": {
     "service_worker": "background.js"
